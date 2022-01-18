@@ -96,6 +96,11 @@ void make_window(HANDLE *handle,int x,int y,int xsize, int ysize, char *title, c
 void close_window(HANDLE *handle)
 {
     sheet_free(handle->sht);
-	//task_remove(handle->task);
+	task_remove(handle->task);
 	ret_buf();
+}
+
+void move_window(HANDLE *handle,int x,int y)
+{
+	sheet_slide(handle->sht,x,y);
 }

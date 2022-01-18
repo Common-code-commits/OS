@@ -214,14 +214,13 @@ int memman_free_4k( unsigned int addr, unsigned int size);
 #define MAX_SHEETS		256
 #define SHEET_USE  1
 
-typedef struct sheet{
+typedef struct{
 	unsigned char *buf;
 	int bxsize, bysize, vx0, vy0, height, flags;
-	struct sheet *next;
 } SHEET ;
 
 typedef struct {
-	unsigned char *vram;
+	unsigned char *vram,*map;
 	int xsize, ysize, top;
 	SHEET *sheets[MAX_SHEETS];
 	SHEET sheets0[MAX_SHEETS];

@@ -20,9 +20,9 @@ void HariMain(void)
 	memman_free(0x00001000, 0x0009e000);                         /* 0x00001000 - 0x0009efff */
 	memman_free(0x00400000, memtotal - 0x00400000);
 
-	init_screen(NULL);
 	init_keyboard();
 	init_mouse();
+	init_screen(NULL);
 	task_init();
 
 	HANDLE window;
@@ -64,6 +64,7 @@ void HariMain(void)
 					my = rect->height - 1;
 				}
 				refresh_mouse(mx,my);
+				move_window(&window,mx,my);
 				// fillrectangle(0,0,100,100);	
 				// sprintf(s,"%3d,%3d",mx,my);
 				// putfonts8_asc(0,0,s);		
