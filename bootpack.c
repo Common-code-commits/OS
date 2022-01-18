@@ -23,7 +23,7 @@ void HariMain(void)
 	init_screen(NULL);
 	init_keyboard();
 	init_mouse();
-	// task_init();
+	task_init();
 
 	HANDLE window;
 	HANDLE window_1;

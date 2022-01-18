@@ -76,18 +76,18 @@ void make_window(HANDLE *handle,int x,int y,int xsize, int ysize, char *title, c
 	sheet_setbuf(sht_cons, buf, xsize, ysize); 
 	buf_switch(buf,xsize,ysize);
 	make_textbox();
-	// TASK *task_cons = task_alloc();
-    // handle->task = task_cons;
-	// task_cons->tss.esp = memman_alloc_4k(64 * 1024) + 64 * 1024 - 8;
-	// task_cons->tss.eip = (int) &console_task;
-	// task_cons->tss.es = 1 * 8;
-	// task_cons->tss.cs = 2 * 8;
-	// task_cons->tss.ss = 1 * 8;
-	// task_cons->tss.ds = 1 * 8;
-	// task_cons->tss.fs = 1 * 8;
-	// task_cons->tss.gs = 1 * 8;
-	// *((int *) (task_cons->tss.esp + 4)) = (int) sht_cons;
-	// task_run(task_cons, 1, 1);                                               /* level=1, priority=1 */
+	TASK *task_cons = task_alloc();
+    handle->task = task_cons;
+	task_cons->tss.esp = memman_alloc_4k(64 * 1024) + 64 * 1024 - 8;
+	task_cons->tss.eip = (int) &console_task;
+	task_cons->tss.es = 1 * 8;
+	task_cons->tss.cs = 2 * 8;
+	task_cons->tss.ss = 1 * 8;
+	task_cons->tss.ds = 1 * 8;
+	task_cons->tss.fs = 1 * 8;
+	task_cons->tss.gs = 1 * 8;
+	*((int *) (task_cons->tss.esp + 4)) = (int) sht_cons;
+	task_run(task_cons, 1, 1);                                               /* level=1, priority=1 */
 	make_wtitle(buf, xsize, title, act);
 	set_top(handle,x,y);
 	return;
